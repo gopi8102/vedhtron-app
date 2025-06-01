@@ -17,6 +17,9 @@ function navbar() {
     localStorage.getItem('userName') || "User"
   );
   const [editing, setEditing] = useState(false);
+  const [firstName, setFirstName] = useState(localStorage.getItem('firstName') || "");
+  const [lastName, setLastName] = useState(localStorage.getItem('lastName') || "");
+  const [phone, setPhone] = useState(localStorage.getItem('phone') || "");
 
   const context= useContext(MyContext);
   const { mode, toggleMode } = context;
@@ -234,7 +237,7 @@ function navbar() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <Link to={'/cart'} className="group -m-2 flex items-center p-2" style={{ color: mode === 'dark' ? 'white' : '', }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/ >
                     </svg>
 
                     <span className="ml-2 text-sm font-medium text-gray-700 group-" style={{ color: mode === 'dark' ? 'white' : '', }}>{cartItem.length}</span>
@@ -272,33 +275,82 @@ function navbar() {
                 />
               </label>
               {editing ? (
-                <input
-                  type="text"
-                  value={userName}
-                  onChange={handleNameChange}
-                  className="border rounded px-2 py-1 mb-2 text-center"
-                  onBlur={() => setEditing(false)}
-                  autoFocus
-                />
+                <>
+                  <input
+                    type="text"
+                    value={userName}
+                    onChange={handleNameChange}
+                    className="border rounded px-2 py-1 mb-2 text-center"
+                    placeholder="User Name"
+                    autoFocus
+                  />
+                  <input
+                    type="text"
+                    value={firstName || ""}
+                    onChange={e => {
+                      setFirstName(e.target.value);
+                      localStorage.setItem('firstName', e.target.value);
+                    }}
+                    className="border rounded px-2 py-1 mb-2 text-center"
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="text"
+                    value={lastName || ""}
+                    onChange={e => {
+                      setLastName(e.target.value);
+                      localStorage.setItem('lastName', e.target.value);
+                    }}
+                    className="border rounded px-2 py-1 mb-2 text-center"
+                    placeholder="Last Name"
+                  />
+                  <input
+                    type="text"
+                    value={phone || ""}
+                    onChange={e => {
+                      setPhone(e.target.value);
+                      localStorage.setItem('phone', e.target.value);
+                    }}
+                    className="border rounded px-2 py-1 mb-2 text-center"
+                    placeholder="Phone Number"
+                  />
+                  <button
+                    className="mt-2 bg-pink-600 text-white px-4 py-1 rounded"
+                    onClick={() => setEditing(false)}
+                  >
+                    Update
+                  </button>
+                </>
               ) : (
-                <h2
-                  className="text-lg font-bold mb-1 cursor-pointer"
-                  title="Click to edit name"
-                  onClick={() => setEditing(true)}
-                >
-                  {userName}
-                </h2>
+                <>
+                  <h2
+                    className="text-lg font-bold mb-1 cursor-pointer"
+                    title="Click to edit name"
+                    onClick={() => setEditing(true)}
+                  >
+                    {userName}
+                  </h2>
+                  <p className="mb-1">
+                    <span className="font-semibold">First Name:</span> {firstName || "N/A"}
+                  </p>
+                  <p className="mb-1">
+                    <span className="font-semibold">Last Name:</span> {lastName || "N/A"}
+                  </p>
+                  <p className="mb-1">
+                    <span className="font-semibold">Phone:</span> {phone || "N/A"}
+                  </p>
+                  <p className="mb-2">
+                    <span className="font-semibold">Email:</span> {user.user?.email || "N/A"}
+                  </p>
+                  <button
+                    className="mt-2 bg-pink-600 text-white px-4 py-1 rounded"
+                    onClick={() => setEditing(true)}
+                  >
+                    Edit
+                  </button>
+                </>
               )}
-              <p className="mb-2">
-                <span className="font-semibold">Email:</span> {user.user?.email || "N/A"}
-              </p>
-              {/* Add more user details here if available */}
-              <button
-                className="mt-2 bg-pink-600 text-white px-4 py-1 rounded"
-                onClick={logout}
-              >
-                Logout
-              </button>
+              
             </div>
           </div>
         </div>

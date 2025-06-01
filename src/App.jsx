@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import Home from './pages/home/home'
+import Home from './pages/home/Home'
 import Products from './pages/allProducts/allProducts'
 import Cart from './pages/cart/cart'
 import Order from './pages/order/order'
