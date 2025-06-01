@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import MyContext from '../../context/data/MyContext'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../../redux/cartSlice'
+import { addToCart } from '../../redux/CartSlice'
 import { toast } from 'react-toastify'
 
 function ProductCard() {

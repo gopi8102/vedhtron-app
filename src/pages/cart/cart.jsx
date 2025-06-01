@@ -3,7 +3,7 @@ import MyContext from "../../context/data/MyContext";
 import Layout from "../../components/layout/layout";
 import Model from "../../components/model/Model";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart } from "../../redux/cartSlice";
+import { deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
 import { collection, addDoc } from "firebase/firestore"; // Make sure this import exists
 import { fireDB } from "../../firebase/FirebaseConfig";
