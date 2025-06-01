@@ -4,7 +4,7 @@ import ProductCard from '../../components/productCard/ProductCard'
 import Layout from '../../components/layout/layout'
 import MyContext from '../../context/data/MyContext'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../../redux/CartSlice'
+import { addToCart } from '../../redux/cartSlice'
 
 function Allproducts() {
   const context = useContext(MyContext)
