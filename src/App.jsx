@@ -1,6 +1,5 @@
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import Home from './pages/home/Home'
-import Products from './pages/products/Products'
 import AllProducts from './pages/allProducts/allProducts'
 import Cart from './pages/cart/cart'
 import Order from './pages/order/order'
@@ -24,7 +23,6 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/products' element={<Products />} />
             <Route path='/cart' element={<Cart />} />
             <Route path="/allproducts" element={<AllProducts />} />
             <Route path='/order' element={
