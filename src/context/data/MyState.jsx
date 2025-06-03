@@ -57,6 +57,7 @@ function MyState(props) {
     setProducts("");
     }
      const [product, setProduct] = useState([]);
+     const [filteredProducts, setFilteredProducts] = useState(product);
 
   // ****** get product
   const getProductData = async () => {
@@ -73,6 +74,7 @@ function MyState(props) {
           productsArray.push({ ...doc.data(), id: doc.id });
         });
         setProduct(productsArray)
+        setFilteredProducts(productsArray); // Reset when product changes
         setLoading(false);
       });
       return () => data;
@@ -175,7 +177,7 @@ function MyState(props) {
     return (
         <MyContext.Provider value={{mode, toggleMode,loading,setLoading,products,setProducts,
             addProduct,product,editHandle,searchkey,setSearchkey,filterType,setFilterType,filterPrice,setFilterPrice,
-           updateProduct,deleteProduct,order,setOrder,user,setUser
+           updateProduct,deleteProduct,order,setOrder,user,setUser,filteredProducts,setFilteredProducts
         }}>  
             {props.children}
         </MyContext.Provider>
